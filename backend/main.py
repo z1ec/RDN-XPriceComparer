@@ -102,10 +102,10 @@ def get_data(username: str = Depends(get_current_username)):
         merged_products.append(
             {
                 "id": p["id"],
+                "store": p.get("store"),
                 "name_original": p.get("name_original"),
                 "name_user": o.get("name_user"),
-                "current_price": p.get("current_price"),
-                "competitors": p.get("competitors", {}),
+                "price": p.get("price"),
                 "tags": o.get("tags", []),
                 "comment": o.get("comment", ""),
             }

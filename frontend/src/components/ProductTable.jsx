@@ -69,8 +69,8 @@ export default function ProductTable({ products, onSave }) {
         v1 = (a.name_user || a.name_original || "").toLowerCase();
         v2 = (b.name_user || b.name_original || "").toLowerCase();
       } else if (sortField === "price") {
-        v1 = a.current_price || 0;
-        v2 = b.current_price || 0;
+        v1 = a.price || 0;
+        v2 = b.price || 0;
       } else if (sortField === "tags") {
         v1 = (a.tags || []).length;
         v2 = (b.tags || []).length;
@@ -155,10 +155,10 @@ export default function ProductTable({ products, onSave }) {
           <thead className="bg-slate-50">
             <tr>
               <th className="px-3 py-2 text-left font-semibold">ID</th>
+              <th className="px-3 py-2 text-left font-semibold">Магазин</th>
               <th className="px-3 py-2 text-left font-semibold">Оригинальное название</th>
               <th className="px-3 py-2 text-left font-semibold">Моё название</th>
               <th className="px-3 py-2 text-left font-semibold">Цена</th>
-              <th className="px-3 py-2 text-left font-semibold">Конкуренты</th>
               <th className="px-3 py-2 text-left font-semibold">Теги</th>
               <th className="px-3 py-2 text-left font-semibold">Комментарий</th>
               <th className="px-3 py-2 text-left font-semibold"></th>
@@ -179,15 +179,13 @@ export default function ProductTable({ products, onSave }) {
               const commentValue =
                 edit.comment !== undefined ? edit.comment : p.comment || "";
 
-              const competitorsText = Object.entries(
-                p.competitors || {}
-              )
-                .map(([k, v]) => `${k}: ${v}`)
-                .join(" | ");
-
               return (
                 <tr key={p.id} className="border-t">
                   <td className="px-3 py-2 text-xs text-slate-500">{p.id}</td>
+
+                  <td className="px-3 py-2 text-xs text-slate-600 whitespace-nowrap">
+                    {p.store || "-"}
+                  </td>
 
                   <td className="px-3 py-2">
                     <div className="text-sm font-medium">{p.name_original}</div>
@@ -204,11 +202,7 @@ export default function ProductTable({ products, onSave }) {
                     />
                   </td>
 
-                  <td className="px-3 py-2 whitespace-nowrap">{p.current_price}</td>
-
-                  <td className="px-3 py-2 text-xs text-slate-600">
-                    {competitorsText || "-"}
-                  </td>
+                  <td className="px-3 py-2 whitespace-nowrap">{p.price}</td>
 
                   <td className="px-3 py-2">
                     <input
