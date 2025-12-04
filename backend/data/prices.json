@@ -1,0 +1,45 @@
+{
+  "updated_at": "2025-12-04T00:12:31",
+  "products": [
+    {
+      "id": "hp-3053",
+      "name_original": "HP LaserJet 3053",
+      "current_price": 15900,
+      "competitors": {
+        "ozon": 16500,
+        "yandex": 15990,
+        "dns": 16299
+      }
+    },
+    {
+      "id": "canon-lbp2900",
+      "name_original": "Canon LBP2900",
+      "current_price": 14500,
+      "competitors": {
+        "ozon": 14900,
+        "yandex": 14790,
+        "dns": 15250
+      }
+    },
+    {
+      "id": "canon-fax450",
+      "name_original": "fax450",
+      "current_price": 1540,
+      "competitors": {
+        "ozon": 15400,
+        "yandex": 14790,
+        "dns": 15250
+      }
+    },
+    {
+      "id": "canon-lb",
+      "name_original": "Canon LBP2",
+      "current_price": 13400,
+      "competitors": {
+        "ozon": 14900,
+        "yandex": 14790,
+        "dns": 15250
+      }
+    }
+  ]
+}

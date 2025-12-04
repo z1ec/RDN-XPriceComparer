@@ -1,52 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
-function App() {
-  const [price, setPrice] = useState(null);
-  const [loading, setLoading] = useState(false);
+export default function App() {
+  const [username, setUsername] = useState(localStorage.getItem("username") || "");
+  const [token, setToken] = useState(localStorage.getItem("token") || "");
 
-  async function loadPrice() {
-    setLoading(true);
-    setPrice(null);
-
-    try {
-      const response = await fetch("http://127.0.0.1:8000/price");
-      const data = await response.json();
-      setPrice(data.price || "Цена не найдена");
-    } catch (error) {
-      setPrice("Ошибка запроса");
-      console.error(error);
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem("token", token);
     }
+    if (username) {
+      localStorage.setItem("username", username);
+    }
+  }, [token, username]);
 
-    setLoading(false);
+  const handleLogin = (name) => {
+    setUsername(name);
+    setToken(localStorage.getItem("token") || "");
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    setToken("");
+    setUsername("");
+  };
+
+  if (!token) {
+    return <Login onLogin={handleLogin} />;
   }
 
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
-      <div className="bg-white shadow-xl rounded-xl p-8 w-full max-w-lg text-center">
-
-        <h1 className="text-2xl font-bold mb-4">
-          Получить цену товара
-        </h1>
-
-        <button
-          onClick={loadPrice}
-          className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
-        >
-          Показать цену
-        </button>
-
-        <div className="mt-6 text-lg">
-          {loading && <p>Загрузка...</p>}
-          {price && !loading && (
-            <p className="font-semibold mt-4">
-              Цена: <span className="text-green-600">{price}</span>
-            </p>
-          )}
-        </div>
-
-      </div>
-    </div>
-  );
+  return <Dashboard onLogout={handleLogout} />;
 }
-
-export default App;

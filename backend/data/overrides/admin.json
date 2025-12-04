@@ -1,0 +1,38 @@
+{
+  "overrides": [
+    {
+      "product_id": "hp-3053",
+      "name_user": "",
+      "tags": [
+        "printer"
+      ],
+      "comment": ""
+    },
+    {
+      "product_id": "canon-lbp2900",
+      "name_user": "",
+      "tags": [
+        "printer",
+        "345"
+      ],
+      "comment": ""
+    },
+    {
+      "product_id": "canon-lb",
+      "name_user": "",
+      "tags": [
+        "printer",
+        "123"
+      ],
+      "comment": ""
+    },
+    {
+      "product_id": "canon-fax450",
+      "name_user": "",
+      "tags": [
+        "123"
+      ],
+      "comment": ""
+    }
+  ]
+}
